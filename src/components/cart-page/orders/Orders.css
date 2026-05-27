@@ -152,3 +152,83 @@
   color: #4b16ff;
   transform: translateY(-2px);
 }
+
+@media (max-width: 768px) {
+  .order-wrapper {
+    padding: 22px;
+    margin-bottom: 150px;
+  }
+
+  .order-heading p {
+    font-size: 22px;
+  }
+
+  .total-order p:first-child {
+    font-size: 24px;
+  }
+
+  .total-order p:last-child {
+    font-size: 26px;
+  }
+
+  .checkout-btn,
+  .quote-btn {
+    width: 100%;
+  }
+
+  .payment-icons {
+    gap: 20px;
+  }
+
+  .payment-icons svg {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .order-wrapper {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .order-heading p {
+    font-size: 20px;
+  }
+
+  .order-row p {
+    font-size: 13px;
+  }
+
+  .total-order {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .total-order p:first-child {
+    font-size: 22px;
+  }
+
+  .total-order p:last-child {
+    font-size: 24px;
+  }
+
+  .checkout-btn {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .quote-btn {
+    font-size: 13px;
+    padding: 13px;
+  }
+
+  .payment-icons {
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .payment-icons svg {
+    font-size: 30px;
+  }
+}

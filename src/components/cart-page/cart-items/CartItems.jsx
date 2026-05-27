@@ -45,11 +45,13 @@ function CartItems() {
             return (
               <div className="cart-product-card" key={product.id}>
                 <div className="product-details-wrapper">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="product-image"
-                  />
+                  <div className="image-wrapper">
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className="product-image"
+                    />
+                  </div>
 
                   <div className="product-content">
                     <div className="product-info">

@@ -6,12 +6,10 @@ import "./CartPage.css";
 
 export default function CartPage() {
   return (
-
-      <div className="cart-wrapper-main">
-        <Header />
-        <CartItems />
-        <Footer />
-      </div>
-
+    <div className="cart-wrapper-main">
+      <Header />
+      <CartItems />
+      <Footer />
+    </div>
   );
 }

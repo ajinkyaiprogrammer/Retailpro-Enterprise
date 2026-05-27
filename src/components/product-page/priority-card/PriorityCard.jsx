@@ -13,7 +13,11 @@ export default function PriorityCard() {
   return (
     <Box
       sx={{
-        position: "sticky",
+        position: {
+          xs: "static",
+          sm: "static",
+          md: "sticky",
+        },
         top: "64px",
         zIndex: 120,
         width: "100%",
@@ -23,7 +27,22 @@ export default function PriorityCard() {
         fontFamily: "Inter, sans-serif",
       }}
     >
-      <Container sx={{ width: "1500px", margin: "auto" }}>
+      <Container
+        sx={{
+          width: {
+            xs: "100%",
+            sm: "100%",
+            md: "100%",
+            lg: "1500px",
+          },
+          px: {
+            xs: 2,
+            sm: 3,
+            md: 4,
+          },
+          margin: "auto",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -32,14 +51,14 @@ export default function PriorityCard() {
               xs: "flex-start",
               md: "center",
             },
-            gap: 4,
+            gap: 3,
 
-            // responsiveness for ipad mini to see button in two lines
             flexDirection: {
               xs: "column",
               sm: "column",
               md: "row",
             },
+
             fontFamily: "Inter, sans-serif",
           }}
         >
@@ -47,16 +66,27 @@ export default function PriorityCard() {
           <Box
             sx={{
               display: "flex",
-              gap: 2,
-              flexWrap: "wrap",
+              gap: 1.5,
+              flexWrap: "nowrap",
+              overflowX: "auto",
 
-              // width for ipad mini
               width: {
                 xs: "100%",
                 sm: "100%",
                 md: "70%",
               },
+
+              justifyContent: {
+                xs: "flex-start",
+                sm: "flex-start",
+                md: "flex-start",
+              },
+
               fontFamily: "Manrope, sans-serif",
+
+              "&::-webkit-scrollbar": {
+                display: "none",
+              },
             }}
           >
             {categories.map((item, index) => (
@@ -68,13 +98,10 @@ export default function PriorityCard() {
                   borderRadius: "14px",
                   fontWeight: 500,
                   fontSize: "12px",
-                  padding: "5px 28px",
-                  // responsive button size
-                  minWidth: {
-                    xs: "45%",
-                    sm: "30%",
-                    md: "120px",
-                  },
+                  padding: "5px 20px",
+
+                  whiteSpace: "nowrap",
+                  flexShrink: 0,
 
                   backgroundColor: index === 0 ? "#004AC6" : "#fff",
 
@@ -90,6 +117,7 @@ export default function PriorityCard() {
                     borderColor: "#d8d8e5",
                     boxShadow: "none",
                   },
+
                   fontFamily: "Inter, sans-serif",
                 }}
               >
@@ -110,19 +138,28 @@ export default function PriorityCard() {
                 md: "auto",
               },
 
+              flexDirection: {
+                xs: "row",
+                sm: "row",
+                md: "row",
+              },
+
               justifyContent: {
                 xs: "flex-start",
+                sm: "flex-start",
                 md: "flex-end",
               },
             }}
           >
-            {/* sort select item */}
             <Select
               defaultValue="Featured"
-              // size="small"
               sx={{
-                padding: "8px 16px",
-                Width: "149.97px",
+                width: {
+                  xs: "48%",
+                  sm: "220px",
+                  md: "149.97px",
+                },
+
                 height: "36px",
                 fontSize: "12px",
                 backgroundColor: "#fff",
@@ -131,6 +168,7 @@ export default function PriorityCard() {
                 "& .MuiOutlinedInput-notchedOutline": {
                   borderColor: "#d8d8e5",
                 },
+
                 fontFamily: "Inter, sans-serif",
               }}
             >
@@ -143,13 +181,16 @@ export default function PriorityCard() {
               </MenuItem>
             </Select>
 
-            {/* filter item */}
             <Button
               variant="outlined"
               startIcon={<TuneIcon />}
               sx={{
-                padding: "8px 16px",
-                Width: "149.97px",
+                width: {
+                  xs: "48%",
+                  sm: "180px",
+                  md: "149.97px",
+                },
+
                 height: "36px",
                 fontSize: "12px",
                 textTransform: "none",
@@ -157,7 +198,6 @@ export default function PriorityCard() {
                 color: "#333",
                 borderColor: "#d8d8e5",
                 backgroundColor: "#fff",
-                px: 3,
 
                 "&:hover": {
                   backgroundColor: "#f2f2f2",
