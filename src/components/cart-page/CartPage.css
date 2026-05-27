@@ -1,0 +1,17 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #faf8ff;
+} */
+
+.cart-wrapper-main {
+  /* min-height: 100vh; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: #faf8ff;
+  background-color: #faf8ff;
+}

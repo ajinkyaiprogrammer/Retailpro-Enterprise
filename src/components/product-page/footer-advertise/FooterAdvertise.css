@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* body {
+  background: #efebf1;
+  font-family: Inter, sans-serif;
+} */
+
+.advertise-wrapper {
+  width: 85%;
+  max-width: 1344px;
+  height: 386px;
+  margin: 50px auto;
+  border-radius: 22px;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2cEiXUBtEE24_gxd8BPQ5CrIjltONX4Lij-YLNGChMU83mgJIb_mpzvsj5U-fXxd2OrUv1cU8jqhvUc6EpenmqFdv_uAhooTntEOj0N_lACqw926zTQhVb4EKB-0cwTsRb6a7s_HEYuvFaNjm9YIKa1brYJu3pbuoAhjdH5MNEMURlhSODNbSwSNkMNRWSE6kgNBpcv6ciHewJyO0OKbzRn14T9EpcnJJG4y_kygmxM1Ke5g53Foq1L9GRkg_f387NKw7c2WvROzJ");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.advertise-text {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  background: none;
+}
+
+.advertise-text h1 {
+  color: white;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  font-family: Manrope, sans-serif;
+  background: none;
+}
+
+.advertise-text p {
+  color: #e6e6e6;
+  font-size: 16px;
+  font-family: Inter, sans-serif;
+  line-height: 1.6;
+  /* max-width: 850px; */
+  margin: 0 auto 35px;
+  background: none;
+}
+
+.advertise-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  background: none;
+}
+
+.advertise-form input {
+  width: 433.55px;
+  height: 58px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(4px);
+  /* border-radius: 6px; */
+  padding: 16px 24px;
+  color: white;
+  font-size: 18px;
+  outline: none;
+}
+
+.advertise-form input::placeholder {
+  color: #d8d8d8;
+}
+
+.advertise-form button {
+  width: 126.45px;
+  height: 58px;
+  border: none;
+  /* border-radius: 6px; */
+  background: white;
+  color: black;
+  font-size: 14px;
+  font-family: Inter, sans-serif;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.advertise-form button:hover {
+  background: #f0f0f0;
+}
+
+@media (max-width: 768px) {
+  .advertise-wrapper {
+    width: 92%;
+    height: auto;
+    padding: 60px 20px;
+  }
+
+  .advertise-text h1 {
+    font-size: 34px;
+  }
+
+  .advertise-text p {
+    font-size: 16px;
+  }
+
+  .advertise-form {
+    flex-direction: column;
+  }
+
+  .advertise-form input {
+    width: 100%;
+  }
+
+  .advertise-form button {
+    width: 100%;
+  }
+}
