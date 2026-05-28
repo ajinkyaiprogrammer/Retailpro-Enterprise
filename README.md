@@ -10,6 +10,7 @@ This project is a React + Vite enterprise retail application built with Redux To
 - An **order summary panel** that calculates subtotal, discount, tax, and total.
 - A **marketing landing section** with hero copy, promotional CTA buttons, and a newsletter subscription UI.
 - A **desktop-friendly footer** and promotional footer section.
+- Updated responsive styling across product, cart, and layout components for better tablet support.
 
 ## Main functionality
 
@@ -151,7 +152,3 @@ Redux Toolkit is used for application state.
 - `src/components/product-page/` — product landing page and marketing UI.
 - `src/components/cart-page/` — cart and order summary UI.
 - `src/components/product-page/*/*.css` and `src/components/cart-page/*/*.css` — component styles.
-
----
-
-This README now reflects the complete RetailPro Enterprise application scope, user-facing features, and internal data flow.
