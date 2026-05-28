@@ -1,12 +1,30 @@
 import "./App.css";
-import { useSelector } from "react-redux";
-import CartPage from "./components/cart-page/CartPage";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Products from "./components/product-page/Products";
+import CartPage from "./components/cart-page/CartPage";
+
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Products />,
+    },
+    {
+      path: "/inventory",
+      element: <Products />,
+    },
+    {
+      path: "/cart",
+      element: <CartPage />,
+    },
+  ],
+  {
+    basename: "/Retailpro-Enterprise",
+  },
+);
 
 function App() {
-  const currentView = useSelector((state) => state.navigation.currentView);
-
-  return <>{currentView === "Cart" ? <CartPage /> : <Products />}</>;
+  return <RouterProvider router={router} />;
 }
-
 export default App;

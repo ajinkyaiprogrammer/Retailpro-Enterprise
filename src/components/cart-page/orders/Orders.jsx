@@ -3,7 +3,7 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import "./Orders.css";
 import { useSelector } from "react-redux";
-import { IconButton } from "@mui/material";
+// import { IconButton } from "@mui/material";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 
 export default function Orders() {
@@ -55,9 +55,7 @@ export default function Orders() {
       <div className="buttons">
         <button className="checkout-btn">
           Checkout Now
-          <IconButton>
-            <ShoppingBagIcon fontSize="small" />
-          </IconButton>
+          <ShoppingBagIcon fontSize="small" className="checkout-btn-svg" />
         </button>
 
         <button className="quote-btn">Request Quote for Approval</button>

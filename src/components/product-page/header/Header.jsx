@@ -8,18 +8,14 @@ import {
   Avatar,
   Badge,
 } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import { setView } from "../../../features/navigation/NavigationSlice"; // Import your new action
 
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 
 function Header() {
-  const dispatch = useDispatch();
-
-  // 1. read current active view and cart items from Redux
-  const currentView = useSelector((state) => state.navigation.currentView);
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const totalItems = cartItems.reduce(
@@ -27,19 +23,17 @@ function Header() {
     0,
   );
 
-  // styles for active and inactive buttons
-  const getButtonStyles = (viewName) => {
-    const isActive = currentView === viewName;
-    return {
-      minWidth: "auto",
-      px: { xs: 0.5, md: 1.5 },
-      fontSize: { xs: "8px", sm: "10px", md: "12px" },
-      color: isActive ? "#004AC6" : "#4a4a4a",
-      fontWeight: isActive ? 700 : 600,
-      textTransform: "none",
-      borderBottom: isActive ? "2px solid #004ac6" : "none",
-      borderRadius: 0,
-    };
+  const buttonStyles = {
+    minWidth: "auto",
+    px: { xs: 0.5, md: 1.5 },
+    fontSize: {
+      xs: "8px",
+      sm: "10px",
+      md: "12px",
+    },
+    fontWeight: 600,
+    textTransform: "none",
+    borderRadius: 0,
   };
 
   return (
@@ -47,8 +41,7 @@ function Header() {
       position="sticky"
       elevation={0}
       sx={{
-        top: 0,
-        backgroundColor: "#f7f4fa",
+        background: "#f7f4fa",
         color: "#2d2d2d",
         borderBottom: "1px solid #e0e0e0",
       }}
@@ -57,28 +50,20 @@ function Header() {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
-          minHeight: { xs: "60px", md: "70px" },
-          px: { xs: 1.5, sm: 2, md: 4 },
-          gap: 2,
         }}
       >
-        {/* left logo and items */}
+        {/* left section titles and buttons*/}
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: { xs: 1, md: 4 },
-            minWidth: 0,
+            gap: 4,
           }}
         >
           <Typography
             sx={{
               fontWeight: 700,
               color: "#004AC6",
-              fontSize: { xs: "14px", sm: "18px", md: "24px" },
-              fontFamily: "Manrope, sans-serif",
-              whiteSpace: "nowrap",
             }}
           >
             RetailPro Enterprise
@@ -87,84 +72,88 @@ function Header() {
           <Box
             sx={{
               display: "flex",
-              alignItems: "center",
-              gap: { xs: 0.3, sm: 1, md: 2 },
-              flexWrap: "wrap",
+              gap: 2,
             }}
           >
-            <Button
-              onClick={() => dispatch(setView("Dashboard"))}
-              sx={getButtonStyles("Dashboard")}
-            >
-              Dashboard
-            </Button>
+            <NavLink to="/inventory">
+              <Button
+                sx={{
+                  ...buttonStyles,
+                }}
+              >
+                Dashboard
+              </Button>
+            </NavLink>
 
-            <Button
-              onClick={() => dispatch(setView("Inventory"))}
-              sx={getButtonStyles("Inventory")}
-            >
-              Inventory
-            </Button>
+            <NavLink to="/inventory">
+              {({ isActive }) => (
+                <Button
+                  sx={{
+                    ...buttonStyles,
+                    color: isActive ? "#004AC6" : "#4a4a4a",
+                    borderBottom: isActive ? "2px solid #004AC6" : "none",
+                  }}
+                >
+                  Inventory
+                </Button>
+              )}
+            </NavLink>
 
-            {/* click on order button shows cart page */}
-            <Button
-              onClick={() => dispatch(setView("Cart"))}
-              sx={getButtonStyles("Cart")}
-            >
-              Orders
-            </Button>
+            <NavLink to="/cart">
+              {({ isActive }) => (
+                <Button
+                  sx={{
+                    ...buttonStyles,
+                    color: isActive ? "#004AC6" : "#4a4a4a",
+                    borderBottom: isActive ? "2px solid #004AC6" : "none",
+                  }}
+                >
+                  Cart
+                </Button>
+              )}
+            </NavLink>
 
-            <Button
-              onClick={() => dispatch(setView("Analytics"))}
-              sx={getButtonStyles("Analytics")}
-            >
-              Analytics
-            </Button>
+            <NavLink to="/inventory">
+              <Button
+                sx={{
+                  ...buttonStyles,
+                }}
+              >
+                Analytics
+              </Button>
+            </NavLink>
           </Box>
         </Box>
 
-        {/* user side button */}
+        {/* right section user profile, cartIcon */}
+
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: { xs: 0.2, sm: 0.5, md: 1.5 },
-            flexShrink: 0,
+            gap: 1,
           }}
         >
-          {/* click on cartIcon button shows cart page */}
-          <IconButton
-            onClick={() => dispatch(setView("Cart"))}
-            sx={{ p: { xs: 0.5, md: 1 } }}
-          >
-            <Badge badgeContent={totalItems} color="error" max={99}>
-              <ShoppingCartOutlinedIcon
-                sx={{
-                  fontSize: { xs: 18, md: 24 },
-                  color: currentView === "Cart" ? "#004AC6" : "inherit",
-                }}
-              />
-            </Badge>
+          <NavLink to="/cart">
+            {({ isActive }) => (
+              <IconButton>
+                <Badge badgeContent={totalItems} color="error">
+                  <ShoppingCartOutlinedIcon
+                    sx={{
+                      color: isActive ? "#004AC6" : "inherit",
+                    }}
+                  />
+                </Badge>
+              </IconButton>
+            )}
+          </NavLink>
+          <IconButton>
+            <NotificationsNoneOutlinedIcon />
           </IconButton>
-
-          <IconButton sx={{ p: { xs: 0.5, md: 1 } }}>
-            <NotificationsNoneOutlinedIcon
-              sx={{ fontSize: { xs: 18, md: 24 } }}
-            />
+          <IconButton>
+            <HelpOutlineOutlinedIcon />
           </IconButton>
-
-          <IconButton sx={{ p: { xs: 0.5, md: 1 } }}>
-            <HelpOutlineOutlinedIcon sx={{ fontSize: { xs: 18, md: 24 } }} />
-          </IconButton>
-
-          <Avatar
-            alt="Profile"
-            src="https://i.pravatar.cc/121"
-            sx={{
-              width: { xs: 28, sm: 34, md: 42 },
-              height: { xs: 28, sm: 34, md: 42 },
-            }}
-          />
+          <Avatar src="https://i.pravatar.cc/121" />
         </Box>
       </Toolbar>
     </AppBar>

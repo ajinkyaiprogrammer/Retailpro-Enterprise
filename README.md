@@ -6,7 +6,7 @@ This project is a React + Vite enterprise retail application built with Redux To
 
 - A **product catalog page** that fetches products from `https://fakestoreapi.com/products` and displays them in responsive cards.
 - An **interactive shopping cart** with add, remove, increment, decrement, and delete functionality.
-- A **navigation header** that switches between views using Redux state.
+- A **navigation header** that routes between pages with React Router `NavLink`.
 - An **order summary panel** that calculates subtotal, discount, tax, and total.
 - A **marketing landing section** with hero copy, promotional CTA buttons, and a newsletter subscription UI.
 - A **desktop-friendly footer** and promotional footer section.
@@ -40,9 +40,12 @@ This project is a React + Vite enterprise retail application built with Redux To
 
 ### Navigation workflow
 
-- Uses Redux to manage `currentView`: `Dashboard`, `Inventory`, `Cart`, `Analytics`.
-- Renders either the `Products` page or the `Cart` page depending on navigation state.
-- Header buttons and cart icon update the current view.
+- Uses React Router v6 route-based navigation with `NavLink` for page switching.
+- Available routes:
+  - `/` → `Products` page
+  - `/inventory` → `Products` page
+  - `/cart` → `CartPage`
+- Header buttons and cart icon navigate using `NavLink`.
 - The cart badge displays the total number of items in the cart.
 
 ## UI & components
@@ -89,6 +92,7 @@ Redux Toolkit is used for application state.
 
 - `src/store/store.js`
   - Combines `products`, `cart`, and `navigation` reducers.
+  - Routing is handled by React Router, while the navigation slice remains present in state for legacy or future navigation-related UI state.
 
 ### Product slice
 
@@ -106,18 +110,22 @@ Redux Toolkit is used for application state.
 ### Navigation slice
 
 - `src/features/navigation/NavigationSlice.jsx`
-  - Stores `currentView`.
-  - Action: `setView`.
+  - Stores `currentView` and exposes `setView`.
+  - The app currently uses React Router for page navigation; this slice remains in state but is not used for route switching.
 
 ## App workflow
 
 1. `src/main.jsx` wraps the app with Redux `Provider`.
-2. `src/App.jsx` reads `currentView` from Redux.
-3. If `currentView === "Cart"`, renders the cart page. Otherwise, renders the products page.
-4. `Header` dispatches `setView(...)` when navigation buttons or cart icon are clicked.
-5. `ProductCard` dispatches `getProducts()` on mount to load product data.
-6. Cart controls dispatch cart slice actions to update quantities and items.
-7. `Orders` reads cart state and computes pricing metrics.
+2. `src/App.jsx` uses React Router with a `createBrowserRouter` router.
+3. Available routes:
+   - `/` → `Products` page
+   - `/inventory` → `Products` page
+   - `/cart` → `CartPage`
+4. The router is configured with `basename: "/Retailpro-Enterprise"`, so the app expects to be deployed under that base path.
+5. Header navigation is route-driven using `NavLink` components.
+6. `ProductCard` dispatches `getProducts()` on mount to load product data.
+7. Cart controls dispatch cart slice actions to update quantities and items.
+8. `Orders` reads cart state and computes pricing metrics.
 
 ## Technology stack
 
@@ -140,12 +148,12 @@ Redux Toolkit is used for application state.
 ## Notes
 
 - The app uses a public Fake Store API for product data.
-- Navigation state includes views for Dashboard and Analytics, but only `Inventory`/product listing and `Cart` are fully rendered.
+- Navigation is handled via React Router routes, and only the `Inventory`/product listing and `Cart` pages are fully rendered.
 - Styling is implemented with a mix of CSS modules and inline Material UI SX styles.
 
 ## File structure overview
 
-- `src/App.jsx` — entry component that chooses page view.
+- `src/App.jsx` — entry component that configures React Router routes.
 - `src/main.jsx` — app bootstrap.
 - `src/store/store.js` — Redux store configuration.
 - `src/features/` — Redux slices.
